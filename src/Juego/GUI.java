@@ -4,6 +4,7 @@ package Juego;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import sun.audio.AudioPlayer;
@@ -24,8 +25,9 @@ public class GUI extends JFrame
         this.pack();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon("images/cohetef.png").getImage());
         
-        // Comienza el juego
+        //Comienza el juego
         juegof.comenzar();
         InputStream in;
         try{

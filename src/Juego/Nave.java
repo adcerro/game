@@ -20,7 +20,6 @@ public class Nave extends MovNave {
 
     // Dibuja las vidas de la nave
     public void ImgNave(Graphics g) {
-
         vidasnave.paintIcon(null, g, this.TenerPosx(), this.TenerPosy());
     }
 

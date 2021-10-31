@@ -4,6 +4,7 @@ package Juego;
 import Teclado.ManejarNave;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,12 +46,12 @@ public class ConfigJ extends JPanel {
     private boolean pegar = false;
     private ArrayList<Nave> cantvida = new ArrayList();
     private ArrayList<Alien> cantaliens = new ArrayList();
-    private ImageIcon fondo = new ImageIcon("images/backgroundf.png");
-
+    private ImageIcon fondo = new ImageIcon("images/opcion2.2.gif");
+    Font font = new Font("Courier", Font.BOLD,24);
   
     // Estado inicial del juego
     public final void ConfiguracionJ() {
-        String directory = "D:\\ProyectosNetbeans\\LABFINALL\\LABDB.accdb"; 
+        String directory = "LABDB.accdb"; 
         conectar= db.conexion(directory);
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 5; j++) {
@@ -60,12 +61,11 @@ public class ConfigJ extends JPanel {
             }
       
         ImageIcon inicio = new ImageIcon("images/startf.png");
-        JOptionPane.showMessageDialog(null,"","Bienvenido a Laboratorio Final Grupo 3@",JOptionPane.INFORMATION_MESSAGE,inicio);   
-        nave = new Nave(375, 730, null, controlesj);
-
+        JOptionPane.showMessageDialog(null,"","|Invasores del espacio|",JOptionPane.INFORMATION_MESSAGE,inicio);   
+        nave = new Nave(450, 710, null, controlesj);
         //Contador de vidas para la nave
         for (int j = 0; j < Nvidas; j++) {
-            vida = new Nave(48 + (j * 20), 10, Color.WHITE, null);
+            vida = new Nave(95 + (j * 20), 8, Color.WHITE, null);
             cantvida.add(vida);
         }
     }
@@ -89,7 +89,7 @@ public class ConfigJ extends JPanel {
         // Dispara la bala al undir espacio
         if (controlesj.TenerTecla(32)) {
             if (disparar) {
-                bala = new Bala(nave.TenerPosx() + 22, nave.TenerPosy() - 20, 0, Color.RED);
+                bala = new Bala(nave.TenerPosx() + 22, nave.TenerPosy() - 20, 0, Color.YELLOW);
                 disparar = false;
             }
         }
@@ -98,6 +98,7 @@ public class ConfigJ extends JPanel {
             bala.dibujar(g);
         }
         // Muestra el score, el highscore y las vidas
+        g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString("Score: " + Score, 260, 20);
         g.setColor(Color.WHITE);
