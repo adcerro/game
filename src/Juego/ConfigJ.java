@@ -48,8 +48,8 @@ public class ConfigJ extends JPanel {
     private ArrayList<Alien> cantaliens = new ArrayList();
     private ImageIcon fondo = new ImageIcon("images/Background2.gif");
     Font font = new Font("Courier", Font.BOLD,24);
-    String color;
-    int opcion;
+    private String color, rutaNave;
+    int opcion, start;
   
     // Estado inicial del juego
     public final void ConfiguracionJ() {
@@ -62,59 +62,49 @@ public class ConfigJ extends JPanel {
                 }
             }
         
-        ImageIcon inicio = new ImageIcon("images/startf.png");
-        ImageIcon naveco = new ImageIcon("images/naves.png");
-        JOptionPane.showMessageDialog(null,"","|Invasores del espacio|",JOptionPane.INFORMATION_MESSAGE,inicio);
-        Object[] buttons = new Object[4];
-        buttons[0]= new ImageIcon("images/cohetef.png");
-        buttons[1]= new ImageIcon("images/cohete2.png");
-        buttons[2]= new ImageIcon("images/cohete3.png");
-        buttons[3]= new ImageIcon("images/cohete4.png");
-        opcion = JOptionPane.showOptionDialog(null, "", "Selección de nave", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,inicio,buttons, null);
+        ImageIcon inicio = new ImageIcon("images/title.png");
+        Object[] startButtons = new Object[2];
+        startButtons[0]= new ImageIcon("images/start.png");
+        startButtons[1]= new ImageIcon("images/quit.png");
+        start = JOptionPane.showOptionDialog(null, "", "|Invasores del espacio|", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,inicio,startButtons, null);
+        if(start !=0){
+         System.exit(0);
+        }
+        Object[] shipButtons = new Object[4];
+        shipButtons[0]= new ImageIcon("images/cohetef.png");
+        shipButtons[1]= new ImageIcon("images/cohete2.png");
+        shipButtons[2]= new ImageIcon("images/cohete3.png");
+        shipButtons[3]= new ImageIcon("images/cohete4.png");
+        opcion = JOptionPane.showOptionDialog(null, "", "Selección de nave", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,new ImageIcon("images/choose.png"),shipButtons, null);
         
-        switch (opcion){
+        switch (opcion){ //Selección de nave
             case 0:
                 color = "RED";
-                nave = new Nave(450, 710, null, controlesj,"images/cohetef.png","images/vidas.png");
-                //Contador de vidas para la nave
-                for (int j = 0; j < Nvidas; j++) {
-                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohetef.png","images/vidas.png");
-                    cantvida.add(vida);
-                }
+                rutaNave="images/cohetef.png";
             break;
             case 1:
                 color = "BLUE";
-                nave = new Nave(450, 710, null, controlesj,"images/cohete2.png","images/vidas.png");
-                //Contador de vidas para la nave
-                for (int j = 0; j < Nvidas; j++) {
-                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete3.png","images/vidas.png");
-                    cantvida.add(vida);
-                }
+                rutaNave="images/cohete2.png";
             break;
             case 2:
                 color = "BLACK";
-                nave = new Nave(450, 710, null, controlesj,"images/cohete3.png","images/vidas.png");
-                //Contador de vidas para la nave
-                for (int j = 0; j < Nvidas; j++) {
-                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete2.png","images/vidas.png");
-                    cantvida.add(vida);
-                }
+                rutaNave="images/cohete3.png";
             break;
             case 3:
                 color = "GREEN";
-                nave = new Nave(450, 710, null, controlesj,"images/cohete4.png","images/vidas.png");
-                System.out.println("hola2");
-                //Contador de vidas para la nave
-                for (int j = 0; j < Nvidas; j++) {
-                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete4.png","images/vidas.png");
-                    cantvida.add(vida);
-                }
-            break;
-            default:
+                rutaNave="images/cohete4.png";
                 
             break;
-        
+            default:
+               System.exit(0);
+            break;
         }
+        nave = new Nave(450, 710, null, controlesj,rutaNave,"images/vidas.png");
+                //Contador de vidas para la nave
+                for (int j = 0; j < Nvidas; j++) {
+                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,rutaNave,"images/vidas.png");
+                    cantvida.add(vida);
+                }
        
         
         
