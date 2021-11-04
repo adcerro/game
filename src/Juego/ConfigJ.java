@@ -46,9 +46,9 @@ public class ConfigJ extends JPanel {
     private boolean pegar = false;
     private ArrayList<Nave> cantvida = new ArrayList();
     private ArrayList<Alien> cantaliens = new ArrayList();
-    private ImageIcon fondo = new ImageIcon("images/opcion2.2.gif");
+    private ImageIcon fondo = new ImageIcon("images/Background2.gif");
     Font font = new Font("Courier", Font.BOLD,24);
-    String color,ingreso;
+    String color;
     int opcion;
   
     // Estado inicial del juego
@@ -65,16 +65,15 @@ public class ConfigJ extends JPanel {
         ImageIcon inicio = new ImageIcon("images/startf.png");
         ImageIcon naveco = new ImageIcon("images/naves.png");
         JOptionPane.showMessageDialog(null,"","|Invasores del espacio|",JOptionPane.INFORMATION_MESSAGE,inicio);
-        ingreso = JOptionPane.showInputDialog(null,naveco);
-        opcion = Integer.parseInt(ingreso);
-        while (opcion>4 || opcion<1){
-            JOptionPane.showMessageDialog(null,"La opción que ingreso no es valida, por favor vuelva a ingresar una de las opciones listadas.","ERROR",JOptionPane.INFORMATION_MESSAGE);
-            ingreso = JOptionPane.showInputDialog(null,naveco);
-            opcion = Integer.parseInt(ingreso);
-            System.out.println("hola1");
-        }
+        Object[] buttons = new Object[4];
+        buttons[0]= new ImageIcon("images/cohetef.png");
+        buttons[1]= new ImageIcon("images/cohete2.png");
+        buttons[2]= new ImageIcon("images/cohete3.png");
+        buttons[3]= new ImageIcon("images/cohete4.png");
+        opcion = JOptionPane.showOptionDialog(null, "", "Selección de nave", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,inicio,buttons, null);
+        
         switch (opcion){
-            case 1:
+            case 0:
                 color = "RED";
                 nave = new Nave(450, 710, null, controlesj,"images/cohetef.png","images/vidas.png");
                 //Contador de vidas para la nave
@@ -83,25 +82,25 @@ public class ConfigJ extends JPanel {
                     cantvida.add(vida);
                 }
             break;
-            case 2:
+            case 1:
                 color = "BLUE";
-                nave = new Nave(450, 710, null, controlesj,"images/cohete3.png","images/vidas.png");
+                nave = new Nave(450, 710, null, controlesj,"images/cohete2.png","images/vidas.png");
                 //Contador de vidas para la nave
                 for (int j = 0; j < Nvidas; j++) {
                     vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete3.png","images/vidas.png");
                     cantvida.add(vida);
                 }
             break;
-            case 3:
+            case 2:
                 color = "BLACK";
-                nave = new Nave(450, 710, null, controlesj,"images/cohete2.png","images/vidas.png");
+                nave = new Nave(450, 710, null, controlesj,"images/cohete3.png","images/vidas.png");
                 //Contador de vidas para la nave
                 for (int j = 0; j < Nvidas; j++) {
                     vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete2.png","images/vidas.png");
                     cantvida.add(vida);
                 }
             break;
-            case 4:
+            case 3:
                 color = "GREEN";
                 nave = new Nave(450, 710, null, controlesj,"images/cohete4.png","images/vidas.png");
                 System.out.println("hola2");
