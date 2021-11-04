@@ -62,6 +62,7 @@ public class ConfigJ extends JPanel {
                 }
             }
         
+        //Pantalla de inicio
         ImageIcon inicio = new ImageIcon("images/title.png");
         Object[] startButtons = new Object[2];
         startButtons[0]= new ImageIcon("images/start.png");
@@ -70,6 +71,7 @@ public class ConfigJ extends JPanel {
         if(start !=0){
          System.exit(0);
         }
+        //pantalla de selección de nave
         Object[] shipButtons = new Object[4];
         shipButtons[0]= new ImageIcon("images/cohetef.png");
         shipButtons[1]= new ImageIcon("images/cohete2.png");
