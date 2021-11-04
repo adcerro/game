@@ -9,12 +9,16 @@ import javax.swing.ImageIcon;
 
 public class Nave extends MovNave {
 
-    ImageIcon nave = new ImageIcon("images/cohetef.png");
-    ImageIcon vidasnave = new ImageIcon("images/vidas.png");
+    ImageIcon nave = new ImageIcon();
+    ImageIcon vidasnave = new ImageIcon();
+    String hola;
 
     // Constructor para los valores de la nave
-    public Nave(int Posicionx, int Posiciony, Color color, ManejarNave control) {
+    public Nave(int Posicionx, int Posiciony, Color color, ManejarNave control,String navepic,String vidapic) {
         super(Posicionx, Posiciony, color, control);
+        this.hola=navepic;
+        nave = new ImageIcon(navepic);
+        vidasnave = new ImageIcon(vidapic);
     }
 
 

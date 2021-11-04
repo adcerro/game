@@ -48,26 +48,78 @@ public class ConfigJ extends JPanel {
     private ArrayList<Alien> cantaliens = new ArrayList();
     private ImageIcon fondo = new ImageIcon("images/opcion2.2.gif");
     Font font = new Font("Courier", Font.BOLD,24);
+    String color,ingreso;
+    int opcion;
   
     // Estado inicial del juego
     public final void ConfiguracionJ() {
         String directory = "LABDB.accdb"; 
-        conectar= db.conexion(directory);
+        conectar = db.conexion(directory);
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 5; j++) {
                     alien = new Alien((20 + (i * 100)), (20 + (j * 60)), 5, 0, j, null, 60, 44); 
                     cantaliens.add(alien);
                 }
             }
-      
+        
         ImageIcon inicio = new ImageIcon("images/startf.png");
-        JOptionPane.showMessageDialog(null,"","|Invasores del espacio|",JOptionPane.INFORMATION_MESSAGE,inicio);   
-        nave = new Nave(450, 710, null, controlesj);
-        //Contador de vidas para la nave
-        for (int j = 0; j < Nvidas; j++) {
-            vida = new Nave(95 + (j * 20), 8, Color.WHITE, null);
-            cantvida.add(vida);
+        ImageIcon naveco = new ImageIcon("images/naves.png");
+        JOptionPane.showMessageDialog(null,"","|Invasores del espacio|",JOptionPane.INFORMATION_MESSAGE,inicio);
+        ingreso = JOptionPane.showInputDialog(null,naveco);
+        opcion = Integer.parseInt(ingreso);
+        while (opcion>4 || opcion<1){
+            JOptionPane.showMessageDialog(null,"La opción que ingreso no es valida, por favor vuelva a ingresar una de las opciones listadas.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            ingreso = JOptionPane.showInputDialog(null,naveco);
+            opcion = Integer.parseInt(ingreso);
+            System.out.println("hola1");
         }
+        switch (opcion){
+            case 1:
+                color = "RED";
+                nave = new Nave(450, 710, null, controlesj,"images/cohetef.png","images/vidas.png");
+                //Contador de vidas para la nave
+                for (int j = 0; j < Nvidas; j++) {
+                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohetef.png","images/vidas.png");
+                    cantvida.add(vida);
+                }
+            break;
+            case 2:
+                color = "BLUE";
+                nave = new Nave(450, 710, null, controlesj,"images/cohete3.png","images/vidas.png");
+                //Contador de vidas para la nave
+                for (int j = 0; j < Nvidas; j++) {
+                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete3.png","images/vidas.png");
+                    cantvida.add(vida);
+                }
+            break;
+            case 3:
+                color = "BLACK";
+                nave = new Nave(450, 710, null, controlesj,"images/cohete2.png","images/vidas.png");
+                //Contador de vidas para la nave
+                for (int j = 0; j < Nvidas; j++) {
+                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete2.png","images/vidas.png");
+                    cantvida.add(vida);
+                }
+            break;
+            case 4:
+                color = "GREEN";
+                nave = new Nave(450, 710, null, controlesj,"images/cohete4.png","images/vidas.png");
+                System.out.println("hola2");
+                //Contador de vidas para la nave
+                for (int j = 0; j < Nvidas; j++) {
+                    vida = new Nave(95 + (j * 20), 8, Color.WHITE, null,"images/cohete4.png","images/vidas.png");
+                    cantvida.add(vida);
+                }
+            break;
+            default:
+                
+            break;
+        
+        }
+       
+        
+        
+        
     }
     
 // Dibujar objetos del juego
@@ -89,7 +141,20 @@ public class ConfigJ extends JPanel {
         // Dispara la bala al undir espacio
         if (controlesj.TenerTecla(32)) {
             if (disparar) {
-                bala = new Bala(nave.TenerPosx() + 22, nave.TenerPosy() - 20, 0, Color.YELLOW);
+                switch (color){
+                    case "RED":
+                        bala = new Bala(nave.TenerPosx() + 22, nave.TenerPosy() - 20, 0, Color.RED);
+                    break;
+                    case "BLUE":
+                        bala = new Bala(nave.TenerPosx() + 22, nave.TenerPosy() - 20, 0, Color.CYAN);
+                    break;
+                    case "BLACK":
+                        bala = new Bala(nave.TenerPosx() + 22, nave.TenerPosy() - 20, 0, Color.WHITE);
+                    break;
+                    case "GREEN":
+                        bala = new Bala(nave.TenerPosx() + 22, nave.TenerPosy() - 20, 0, Color.GREEN);
+                    break;
+                }
                 disparar = false;
             }
         }
@@ -165,7 +230,7 @@ public class ConfigJ extends JPanel {
                             cantvida.clear();
                             cantaliens.clear();
                             Score = 0;
-                            Nvidas = 5;
+                            Nvidas = 3;
                             disparar = true;
                             ConfiguracionJ();
                         }
@@ -224,7 +289,7 @@ public class ConfigJ extends JPanel {
                 cantvida.clear();
                 cantaliens.clear();
                 Score = 0;
-                Nvidas = 5;
+                Nvidas = 3;
                 disparar = true;
                 ConfiguracionJ();
             }
@@ -252,7 +317,7 @@ public class ConfigJ extends JPanel {
                 cantvida.clear();
                 cantaliens.clear();
                 Score = 0;
-                Nvidas = 5;
+                Nvidas = 3;
                 disparar = true;
                 ConfiguracionJ();
             }
